@@ -1,14 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Collider : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private int collideCounter;
+
+    private void OnCollisionEnter(Collision hit)
     {
-   //    if (collision.gameObject.name = "sphere")
-  //     {
- //           Debug.Log("Hit");
-  //      }
+        Debug.Log("HIT!");
+        hit.gameObject.SendMessage("Damage");
+
     }
+
+    private void Damage()
+    {
+        if (collideCounter != 3)
+        {
+            collideCounter++;
+        }
+        else
+        {
+            SceneManager.LoadScene("EndMenu");
+        }
+    }
+
 }
