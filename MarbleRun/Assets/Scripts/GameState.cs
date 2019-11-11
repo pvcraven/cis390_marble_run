@@ -22,7 +22,7 @@ public class GameState : MonoBehaviour
             {
             // Create the marble
                 prefab.GetComponent<Renderer>().material = materials[x];
-                Instantiate(prefab, new Vector3(0f + x, 0f, 0f + x), Quaternion.identity);
+                Instantiate(prefab, new Vector3(13f, 2.5f, -14f + x), Quaternion.identity);
                 
             }
     }
