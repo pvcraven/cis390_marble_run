@@ -1016,9 +1016,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9ef7851feb6cbb4aa50cd3882a5845d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sphere_list: []
-  sphereList: []
-  distanceFromObject: 6
+  prefab: {fileID: 7818140901197979693, guid: 2f1da63cfd3afc5409ec0c53bc2219dc, type: 3}
+  mat1: {fileID: 2100000, guid: 4ee9d7a416db0c44cb215ef0afbb334d, type: 2}
+  mat2: {fileID: 2100000, guid: e181bad48dfda974291174ec296ef13c, type: 2}
+  mat3: {fileID: 2100000, guid: cfb2676b9a1ec724e8939b05e0a376b4, type: 2}
+  mat4: {fileID: 2100000, guid: c5d517548f8e7754c96b9ec0ea860767, type: 2}
 --- !u!4 &913045225
 Transform:
   m_ObjectHideFlags: 0
