@@ -5,10 +5,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Crash : MonoBehaviour
-{
-    void Start()
-    {
-        Debug.Log("Start!");
-    }      void OnCollisionEnter(Collision hit)     {         Debug.Log("HIT!");
+{ 
+    int colliderCount;      void OnCollisionEnter(Collision hit)     {         Debug.Log("HIT!");
+
+        if (colliderCount == 1)
+        {
+            SceneManager.LoadScene("EndMenu");
+        }
+        else
+        {
+            colliderCount++;
+        }
     }
 }
