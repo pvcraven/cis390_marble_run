@@ -32,6 +32,7 @@ public class GameState : MonoBehaviour
                 // Add the rigidbody for physics.
                 Rigidbody gameObjectsRigidBody = sphere.AddComponent<Rigidbody>(); 
                 gameObjectsRigidBody.mass = 5;
+                
                  
                 sphereList.Add(sphere);
             }
