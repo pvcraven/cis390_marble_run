@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Collision_P
+  - pegBoard
   layers:
   - Default
   - TransparentFX

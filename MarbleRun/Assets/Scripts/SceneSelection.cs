@@ -53,14 +53,36 @@ public class SceneSelection : MonoBehaviour
 
     public void confirmButton()
     {
-        if (index == 0)
+        switch (index)
+        {
+           case 0:
+                SceneManager.LoadScene("Scene01");
+                break;
+           case 1:
+                SceneManager.LoadScene("Scene02");
+                break;
+            case 2:
+                SceneManager.LoadScene("Scene03");
+                break;
+            case 3:
+                SceneManager.LoadScene("Scene04");
+                break;
+            case 4:
+                SceneManager.LoadScene("Scene05");
+                break;
+            case 5:
+                SceneManager.LoadScene("Scene06");
+                break;
+        }
+
+        /*if (index == 0)
         {
             SceneManager.LoadScene("Scene01");
         }
         else if(index == 1)
         {
             SceneManager.LoadScene("Scene02");
-        }
+        }*/
     }
 
     // Update is called once per frame
