@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collision_P
   - pegBoard
+  - LeadBall
   layers:
   - Default
   - TransparentFX
