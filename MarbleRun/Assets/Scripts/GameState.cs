@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class GameState : MonoBehaviour
 {
     public GameObject prefab;
+	public GameObject startGate;
+	public Button startButton;
     public Material mat1;
     public Material mat2;
     public Material mat3;
@@ -19,12 +21,23 @@ public class GameState : MonoBehaviour
             {
             // Create the marble
                 prefab.GetComponent<Renderer>().material = materials[x];
-                Instantiate(prefab, new Vector3(13f, 2.5f, -14f + x), Quaternion.identity);
-            }
+			//Instantiate(prefab, new Vector3(13f, 2.5f, -14f + x), Quaternion.identity);
+			Instantiate(prefab, new Vector3(Random.Range(10f, 16f), 2.5f, -14f + x), Quaternion.identity);
+			}
+		Button btn = startButton.GetComponent<Button>();
+		btn.onClick.AddListener(TaskOnClick);
+
     }
     // Update is called once per frame
     void Update()
     {
 
     }
+
+	void TaskOnClick()
+	{
+		Button btn = startButton.GetComponent<Button>();
+		btn.gameObject.SetActive(false);
+		startGate.SetActive(false);
+	}
 }
