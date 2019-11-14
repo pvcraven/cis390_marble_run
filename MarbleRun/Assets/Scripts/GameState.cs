@@ -55,26 +55,47 @@ public class GameState : MonoBehaviour
         {
             scoreboard.AddMarble(marble);
         }
-        scoreboard.Create();
-
-        Button btn = startButton.GetComponent<Button>();
-		btn.onClick.AddListener(TaskOnClick); 
+		scoreboard.Create();
     }
 
     // Update is called once per frame
     void Update()
     {
-        scoreboard.Update();
-        scoreboard.Display();
-        LabelsFollow();
+		scoreboard.Display();
+		scoreboard.Update();
+		LabelsFollow();
+
+		if (startGate.activeSelf)
+		{
+			if (CheckMarbleStop())
+			{
+				Button btn = startButton.GetComponent<Button>();
+				btn.gameObject.SetActive(true);
+				btn.onClick.AddListener(TaskOnClick);
+			}
+		}
     }
+
+	private bool CheckMarbleStop()
+	{
+		foreach (GameObject marble in marbles)
+		{
+			Rigidbody marblerb = marble.GetComponent<Rigidbody>();
+			Vector3 v3Velocity = marblerb.velocity;
+			if ((v3Velocity.x == 0 && v3Velocity.y == 0 && v3Velocity.z == 0) || Time.time > 10)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
 	void TaskOnClick()
 	{
 		Button btn = startButton.GetComponent<Button>();
 		btn.gameObject.SetActive(false);
 		startGate.SetActive(false);
-    }
+	}
 
     void LabelsFollow()
     {
