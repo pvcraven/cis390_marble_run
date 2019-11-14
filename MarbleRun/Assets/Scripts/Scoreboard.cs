@@ -123,7 +123,7 @@ public class Scoreboard
         for(int i = 0; i < marbles.Count; i++)
         {
             // Disqualify marble if it falls below the tray
-            if (marbles[i].transform.position.y < GameObject.Find("tray").transform.position.y)
+            if (marbles[i].transform.position.y < (GameObject.Find("tray").transform.position.y - 1))
             {
                 disqualifiedMarbles.Add(marbles[i]);
                 marbles.RemoveAt(i);
