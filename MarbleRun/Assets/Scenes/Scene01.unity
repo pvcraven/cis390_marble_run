@@ -248,7 +248,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 144399350}
-  m_Material: {fileID: 13400000, guid: 60bb4fce2f680994b9b1d93309b31044, type: 2}
+  m_Material: {fileID: 13400000, guid: c4d7ce25599ea3b4782f5ade2dc294fb, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1825,6 +1825,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 210.1466
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: be81f7f9710099f468ed1037168be608,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: aaa5c503895900c4da34226573d2954f,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be81f7f9710099f468ed1037168be608, type: 3}
 --- !u!1 &1740595569 stripped
