@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour
 
     private void OnTriggerEnter(UnityEngine.Collider collider)
     {
-        if (collider.tag.Equals("Player"))
+        if (collider.tag.Equals("LeadBall"))
         {
             startingCamera.enabled = false;
             newCamera.enabled = true;
