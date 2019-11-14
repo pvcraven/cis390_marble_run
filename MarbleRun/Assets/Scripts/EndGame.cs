@@ -13,9 +13,9 @@ public class EndGame : MonoBehaviour
 
     public void ExitGame()
     {
-        // Close game if the game is built
+
         Application.Quit();
-        // Close Unity game if it's in a Unity Editor
+       
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
