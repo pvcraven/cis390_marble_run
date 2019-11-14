@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: efd1c33efd2d58340b88804268e6833f, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -519,7 +519,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 47.881, y: -84.602005, z: 1.034}
 --- !u!1 &418090825
 GameObject:
@@ -1458,7 +1458,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 22.658, y: -262.543, z: 2.3170002}
 --- !u!1001 &850304855
 PrefabInstance:
@@ -1624,13 +1624,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858342834}
-  m_LocalRotation: {x: -0.14525126, y: 0.40779835, z: -0.38126445, w: -0.8168476}
-  m_LocalPosition: {x: 16.94, y: 10.74, z: -21.27}
+  m_LocalRotation: {x: -0.28996527, y: 0.1585742, z: -0.04878379, w: -0.9425469}
+  m_LocalPosition: {x: 7.4, y: 8.47, z: -24.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 33.247, y: 318.38098, z: 37.094}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 34.2, y: 340.9, z: 0}
 --- !u!1 &903710463
 GameObject:
   m_ObjectHideFlags: 0
@@ -2785,7 +2785,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &1808804021
 PrefabInstance:
@@ -3102,7 +3102,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 30.774002, y: -61.313004, z: -3.308}
 --- !u!114 &1873839569
 MonoBehaviour:
