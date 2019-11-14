@@ -12,26 +12,61 @@ public class GameState : MonoBehaviour
     public Material mat2;
     public Material mat3;
     public Material mat4;
+    private List<GameObject> marbles;
+    private List<GameObject> marbleLabels;
+    private Scoreboard scoreboard;
     
     void Start()
     {
         Material[] materials = new Material[4] { mat1, mat2, mat3, mat4 };
-        // Create a bunch of random marbles.
-            for (int x = 0; x < 4; x++)
-            {
-            // Create the marble
-                prefab.GetComponent<Renderer>().material = materials[x];
-			//Instantiate(prefab, new Vector3(13f, 2.5f, -14f + x), Quaternion.identity);
-			Instantiate(prefab, new Vector3(Random.Range(10f, 16f), 2.5f, -14f + x), Quaternion.identity);
-			}
-		Button btn = startButton.GetComponent<Button>();
-		btn.onClick.AddListener(TaskOnClick);
 
+        // Create a bunch of random marbles with labels.
+        marbles = new List<GameObject>();
+        marbleLabels = new List<GameObject>();
+        for (int x = 0; x < materials.Length; x++)
+        {
+            string marbleName = materials[x].name + " Marble";
+
+            // Create the marble
+            prefab.GetComponent<Renderer>().material = materials[x];
+		    //Instantiate(prefab, new Vector3(13f, 2.5f, -14f + x), Quaternion.identity);
+		    marbles.Add(Instantiate(prefab, new Vector3(Random.Range(10f, 16f), 2.5f, -14f + x), Quaternion.identity));
+            marbles[x].name = marbleName;
+
+            // Create the marble label
+            GameObject label = new GameObject(marbleName + " Label");
+
+            // Set the label text
+            TextMesh labelText = label.AddComponent<TextMesh>();
+            labelText.text = marbleName;
+            labelText.characterSize =0.75f;
+            labelText.color = Color.white;
+            labelText.anchor = TextAnchor.UpperCenter;
+            labelText.alignment = TextAlignment.Center;
+            Outline labelOutline = label.AddComponent<Outline>();
+
+            label.transform.position = marbles[x].transform.position;
+            marbleLabels.Add(label);
+        }
+
+        // Initialize scoreboard
+        scoreboard = new Scoreboard(marbles[0].transform.position.y, Time.time);
+        foreach (GameObject marble in marbles)
+        {
+            scoreboard.AddMarble(marble);
+        }
+        scoreboard.Create();
+
+        Button btn = startButton.GetComponent<Button>();
+		btn.onClick.AddListener(TaskOnClick); 
     }
+
     // Update is called once per frame
     void Update()
     {
-
+        scoreboard.Update();
+        scoreboard.Display();
+        LabelsFollow();
     }
 
 	void TaskOnClick()
@@ -39,5 +74,31 @@ public class GameState : MonoBehaviour
 		Button btn = startButton.GetComponent<Button>();
 		btn.gameObject.SetActive(false);
 		startGate.SetActive(false);
-	}
+    }
+
+    void LabelsFollow()
+    {
+        // Disables main camera, which is not in use
+        if (GameObject.Find("Main Camera"))
+        {
+            GameObject.Find("Main Camera").GetComponent<Camera>().enabled = false;
+        }
+
+        for (int marbleNum = 0; marbleNum < marbleLabels.Count; marbleNum++)
+        {
+            GameObject marble = marbles[marbleNum];
+            GameObject label = marbleLabels[marbleNum];
+            // SOURCE: https://answers.unity.com/questions/132592/lookat-in-opposite-direction.html
+            List<Camera> cameras = new List<Camera>();
+            cameras.AddRange(GameObject.FindObjectsOfType<Camera>());
+            foreach (Camera camera in cameras)
+            {
+                if (camera.enabled)
+                {
+                    label.transform.rotation = Quaternion.LookRotation(label.transform.position - camera.transform.position);
+                    label.transform.position = marble.transform.position + new Vector3(0, 2, 0);
+                }
+            }
+        }
+    }
 }
