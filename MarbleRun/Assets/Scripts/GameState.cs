@@ -33,6 +33,10 @@ public class GameState : MonoBehaviour
             prefab.GetComponent<Renderer>().material = materials[x];
 		    marbles.Add(Instantiate(prefab, new Vector3(Random.Range(10f, 16f), 2.5f, -14f + x), Quaternion.identity));
             marbles[x].name = marbleName;
+            GameObject marbleState = new GameObject("Marble State");
+            marbleState.transform.SetParent(marbles[x].transform);
+            // TODO: Add tags "Marble Not Finished" and "Marble Finished", currently "Respawn" and "Finish" are placeholders.
+            marbleState.tag = "Respawn";
 
             // Create the marble label
             GameObject label = new GameObject(marbleName + " Label");

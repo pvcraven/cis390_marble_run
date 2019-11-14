@@ -5,16 +5,31 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Crash : MonoBehaviour
-{ 
-    int colliderCount;      void OnCollisionEnter(Collision hit)     {         Debug.Log("HIT!");
+{
+    GameObject[] marblesNotFinished;
+    bool end = false;
 
-        if (colliderCount == 1)
+    void OnCollisionEnter(Collision hit)
+    {
+        GameObject marble = hit.gameObject;
+        marble.transform.GetChild(0).tag = "Finish";
+        marblesNotFinished = GameObject.FindGameObjectsWithTag("Respawn");
+        //Debug.Log("HIT! " + marblesNotFinished.Length);
+    }
+
+    private void Update()
+    {
+        if (!end && marblesNotFinished.Length == 0)
         {
-            SceneManager.LoadScene("EndMenu");
+            end = true;
+            StartCoroutine(GoToEnd());
         }
-        else
-        {
-            colliderCount++;
-        }
+    }
+
+    // Goes to end menu after 5 second delay
+    private IEnumerator GoToEnd()
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("EndMenu");
     }
 }
