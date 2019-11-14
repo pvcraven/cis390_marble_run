@@ -8,6 +8,7 @@ public class Scoreboard
 {
     private List<GameObject[]> scoreboardDisplay;
     private List<GameObject> marbles;
+    private List<GameObject> disqualifiedMarbles;
     private List<float[]> marbleStats;
     private float startDistance;
     private float startTime;
@@ -20,6 +21,7 @@ public class Scoreboard
         scoreboardDisplay = new List<GameObject[]>();
         marbles = new List<GameObject>();
         marbleStats = new List<float[]>();
+        disqualifiedMarbles = new List<GameObject>();
         this.startDistance = startDistance;
         this.startTime = startTime;
     }
@@ -34,7 +36,7 @@ public class Scoreboard
         marbles.Add(marble);
     }
 
-    // Creates the text GameObjects for the scoreboard display
+    // Creates the canvas, panel, and text GameObjects for the scoreboard display
     public void Create()
     {
         panel_size = new Vector2(290, 15 * (marbles.Count + 1) + 3);
@@ -93,14 +95,25 @@ public class Scoreboard
         headerTime.text = "Time";
         headerTime.fontStyle = FontStyle.BoldAndItalic;
 
-        // Display the remaining rows
-        for (int r = 1; r < scoreboardDisplay.Count; r++)
+        // Display the marbles that are not disqualified
+        for (int r = 0; r < marbles.Count; r++)
         {
-            scoreboardDisplay[r][0].GetComponent<Text>().text = marbles[r - 1].name;
+            scoreboardDisplay[r + 1][0].GetComponent<Text>().text = marbles[r].name;
 
             for(int c = 1; c <= NUM_STATS; c++)
             {
-                scoreboardDisplay[r][c].GetComponent<Text>().text = marbleStats[r - 1][c - 1].ToString("0.00");
+                scoreboardDisplay[r + 1][c].GetComponent<Text>().text = marbleStats[r][c - 1].ToString("0.00");
+            }
+        }
+
+        // Display the marbles that are disqualified
+        for (int r = 0; r < disqualifiedMarbles.Count; r++)
+        {
+            scoreboardDisplay[r + marbles.Count + 1][0].GetComponent<Text>().text = disqualifiedMarbles[r].name;
+
+            for (int c = 1; c <= NUM_STATS; c++)
+            {
+                scoreboardDisplay[r + marbles.Count + 1][c].GetComponent<Text>().text = "DQ";
             }
         }
     }
@@ -109,6 +122,14 @@ public class Scoreboard
     {
         for(int i = 0; i < marbles.Count; i++)
         {
+            // Disqualify marble if it falls below the tray
+            if (marbles[i].transform.position.y < (GameObject.Find("tray").transform.position.y - 1))
+            {
+                disqualifiedMarbles.Add(marbles[i]);
+                marbles.RemoveAt(i);
+            }
+
+            // Get the new distances and times of the marbles
             float newDistance = startDistance - marbles[i].transform.position.y;
             float newTime = Time.time - startTime;
             float[] newStat = { newDistance, newTime };
