@@ -9,19 +9,39 @@ public class GameState : MonoBehaviour
     public GameObject prefab;
 	public GameObject startGate;
 	public Button startButton;
-    public Material mat1;
-    public Material mat2;
-    public Material mat3;
-    public Material mat4;
     private List<GameObject> marbles;
     private List<GameObject> marbleLabels;
     const int marbleCount = 4;
     private Scoreboard scoreboard;
-    
+    private int colorSelection;
+
+
     void Start()
     {
-        Material[] materials = new Material[4] { mat1, mat2, mat3, mat4 };
 
+        colorSelection = SceneSelection.MateralSelection;
+        Material[] materials = new Material[4];
+        switch (colorSelection)
+        {
+            case 0:
+                materials[0] = Resources.Load<Material>("Blue");
+                materials[1] = Resources.Load<Material>("Purple");
+                materials[2] = Resources.Load<Material>("Red");
+                materials[3] = Resources.Load<Material>("Yellow");
+                break;
+            case 1:
+                materials[0] = Resources.Load<Material>("Pink");
+                materials[1] = Resources.Load<Material>("Blue");
+                materials[2] = Resources.Load<Material>("Green");
+                materials[3] = Resources.Load<Material>("Orange");
+                break;
+            default:
+                materials[0] = Resources.Load<Material>("Blue");
+                materials[1] = Resources.Load<Material>("Purple");
+                materials[2] = Resources.Load<Material>("Red");
+                materials[3] = Resources.Load<Material>("Yellow");
+                break;
+        }
         // Create a bunch of random marbles with labels.
         marbles = new List<GameObject>();
         marbleLabels = new List<GameObject>();

@@ -19,7 +19,7 @@ public class CameraRotate : MonoBehaviour
         transform.LookAt(targetTransform);
         if (gameObject.GetComponent<Camera>().enabled)
         {
-            transform.Translate(Vector3.right * Time.deltaTime * 3);
+            transform.Translate(Vector3.right * Time.deltaTime * 6);
         }
     }
 }

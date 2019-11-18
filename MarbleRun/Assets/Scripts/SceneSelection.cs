@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +7,7 @@ public class SceneSelection : MonoBehaviour
 {
     private GameObject[] sceneList;
     private int index;
+    public static int MateralSelection;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +51,15 @@ public class SceneSelection : MonoBehaviour
 
         sceneList[index].SetActive(true);
     }
-
+    public void BackToCourseSelection()
+    {
+        SceneManager.LoadScene("Scene Selection");
+        MateralSelection = index;
+    }
+    public void ToColorSelection()
+    {
+        SceneManager.LoadScene("ColorSelection");
+    }
     public void confirmButton()
     {
         switch (index)
