@@ -6,13 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Crash : MonoBehaviour
 {
-    GameObject[] marblesNotFinished;
+    GameObject[] marblesNotFinished = new GameObject[1];
     bool end = false;
-
-    void Start()
-    {
-        marblesNotFinished = GameObject.FindGameObjectsWithTag("Respawn");
-    }
 
     void OnCollisionEnter(Collision hit)
     {
