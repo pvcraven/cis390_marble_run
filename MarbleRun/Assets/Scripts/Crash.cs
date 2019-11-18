@@ -9,6 +9,11 @@ public class Crash : MonoBehaviour
     GameObject[] marblesNotFinished;
     bool end = false;
 
+    void Start()
+    {
+        marblesNotFinished = GameObject.FindGameObjectsWithTag("Respawn");
+    }
+
     void OnCollisionEnter(Collision hit)
     {
         GameObject marble = hit.gameObject;
