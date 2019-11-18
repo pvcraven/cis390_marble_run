@@ -871,7 +871,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 525576641}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &525576643
 Camera:
   m_ObjectHideFlags: 0
@@ -1291,10 +1291,6 @@ MonoBehaviour:
   prefab: {fileID: 7818140901197979693, guid: 2f1da63cfd3afc5409ec0c53bc2219dc, type: 3}
   startGate: {fileID: 0}
   startButton: {fileID: 0}
-  mat1: {fileID: 2100000, guid: 4ee9d7a416db0c44cb215ef0afbb334d, type: 2}
-  mat2: {fileID: 2100000, guid: e181bad48dfda974291174ec296ef13c, type: 2}
-  mat3: {fileID: 2100000, guid: cfb2676b9a1ec724e8939b05e0a376b4, type: 2}
-  mat4: {fileID: 2100000, guid: c5d517548f8e7754c96b9ec0ea860767, type: 2}
 --- !u!4 &913045225
 Transform:
   m_ObjectHideFlags: 0
@@ -1422,7 +1418,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081891306}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1081891308
 Camera:
   m_ObjectHideFlags: 0
@@ -2160,7 +2156,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905750495}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1905750497
 Camera:
   m_ObjectHideFlags: 0
