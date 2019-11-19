@@ -102,7 +102,7 @@ public class Scoreboard
 
             for(int c = 1; c <= NUM_STATS; c++)
             {
-                if(marbles[r].transform.GetChild(0).tag != "Finish")
+                if(marbles[r].transform.GetChild(0).tag != "marbleFinished")
                 {
                     scoreboardDisplay[r + 1][c].GetComponent<Text>().text = marbleStats[r][c - 1].ToString("0.00");
                 }
@@ -129,7 +129,7 @@ public class Scoreboard
             if (marbles[i].transform.position.y < (GameObject.Find("tray").transform.position.y - 1))
             {
                 disqualifiedMarbles.Add(marbles[i]);
-                marbles[i].transform.GetChild(0).tag = "Finish";
+                marbles[i].transform.GetChild(0).tag = "marbleFinished";
                 marbles.RemoveAt(i);
             }
 
@@ -149,7 +149,7 @@ public class Scoreboard
         {
             for (int j = 0; j < marbles.Count - 1; j++)
             {
-                if (marbleStats[j][0] < marbleStats[j + 1][0] && marbles[j].transform.GetChild(0).tag == "Respawn")
+                if (marbleStats[j][0] < marbleStats[j + 1][0] && marbles[j].transform.GetChild(0).tag == "marbleNotFinished")
                 {
                     // Sorts the marble stats
                     for(int k = 0; k < NUM_STATS; k++)

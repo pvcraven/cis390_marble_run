@@ -7,6 +7,9 @@ TagManager:
   - Collision_P
   - pegBoard
   - LeadBall
+  - startGate
+  - marbleFinished
+  - marbleNotFinished
   layers:
   - Default
   - TransparentFX

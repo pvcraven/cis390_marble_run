@@ -55,8 +55,7 @@ public class GameState : MonoBehaviour
             marbles[x].name = marbleName;
             GameObject marbleState = new GameObject("Marble State");
             marbleState.transform.SetParent(marbles[x].transform);
-            // TODO: Add tags "Marble Not Finished" and "Marble Finished", currently "Respawn" and "Finish" are placeholders.
-            marbleState.tag = "Respawn";
+            marbleState.tag = "marbleNotFinished";
 
             // Create the marble label
             GameObject label = new GameObject(marbleName + " Label");

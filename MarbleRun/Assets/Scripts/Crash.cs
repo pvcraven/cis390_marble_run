@@ -12,8 +12,8 @@ public class Crash : MonoBehaviour
     void OnCollisionEnter(Collision hit)
     {
         GameObject marble = hit.gameObject;
-        marble.transform.GetChild(0).tag = "Finish";
-        marblesNotFinished = GameObject.FindGameObjectsWithTag("Respawn");
+        marble.transform.GetChild(0).tag = "marbleFinished";
+        marblesNotFinished = GameObject.FindGameObjectsWithTag("marbleNotFinished");
         //Debug.Log("HIT! " + marblesNotFinished.Length);
     }
 
