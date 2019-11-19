@@ -74,7 +74,7 @@ public class GameState : MonoBehaviour
         }
 
         // Initialize scoreboard
-        scoreboard = new Scoreboard(marbles[0].transform.position.y, Time.time);
+        scoreboard = new Scoreboard();
         foreach (GameObject marble in marbles)
         {
             scoreboard.AddMarble(marble);
@@ -106,7 +106,7 @@ public class GameState : MonoBehaviour
 		{
 			Rigidbody marblerb = marble.GetComponent<Rigidbody>();
 			Vector3 v3Velocity = marblerb.velocity;
-			if ((v3Velocity.x == 0 && v3Velocity.y == 0 && v3Velocity.z == 0) || Time.time > 10)
+			if ((v3Velocity.x == 0 && v3Velocity.y == 0 && v3Velocity.z == 0) || Time.time > 8)
 			{
 				return true;
 			}
@@ -117,6 +117,7 @@ public class GameState : MonoBehaviour
 	void TaskOnClick()
 	{
 		Button btn = startButton.GetComponent<Button>();
+        scoreboard.StartRace();
 		btn.gameObject.SetActive(false);
 		startGate.SetActive(false);
 	}
