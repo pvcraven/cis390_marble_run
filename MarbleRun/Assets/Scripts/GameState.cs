@@ -74,7 +74,7 @@ public class GameState : MonoBehaviour
         }
 
         // Initialize scoreboard
-        scoreboard = new Scoreboard(marbles[0].transform.position.y, Time.time);
+        scoreboard = new Scoreboard();
         foreach (GameObject marble in marbles)
         {
             scoreboard.AddMarble(marble);
@@ -117,6 +117,7 @@ public class GameState : MonoBehaviour
 	void TaskOnClick()
 	{
 		Button btn = startButton.GetComponent<Button>();
+        scoreboard.StartRace();
 		btn.gameObject.SetActive(false);
 		startGate.SetActive(false);
 	}
