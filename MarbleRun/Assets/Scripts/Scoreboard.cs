@@ -15,15 +15,14 @@ public class Scoreboard
     private static int NUM_STATS = 2;
     private Vector2 panel_size;
     private static Color PANEL_COLOR = Color.white;
+    private static bool raceStarted = false;
 
-    public Scoreboard(float startDistance, float startTime)
+    public Scoreboard()
     {
         scoreboardDisplay = new List<GameObject[]>();
         marbles = new List<GameObject>();
         marbleStats = new List<float[]>();
         disqualifiedMarbles = new List<GameObject>();
-        this.startDistance = startDistance;
-        this.startTime = startTime;
     }
 
     public void AddMarble(GameObject marble)
@@ -98,13 +97,25 @@ public class Scoreboard
         // Display the marbles that are not disqualified
         for (int r = 0; r < marbles.Count; r++)
         {
+            // Display the marble name
             scoreboardDisplay[r + 1][0].GetComponent<Text>().text = marbles[r].name;
 
-            for(int c = 1; c <= NUM_STATS; c++)
+            // Display the marble stats if the race has started, otherwise display 0.0
+            if (raceStarted)
             {
-                if(marbles[r].transform.GetChild(0).tag != "marbleFinished")
+                for (int c = 1; c <= NUM_STATS; c++)
                 {
-                    scoreboardDisplay[r + 1][c].GetComponent<Text>().text = marbleStats[r][c - 1].ToString("0.00");
+                    if (marbles[r].transform.GetChild(0).tag != "marbleFinished")
+                    {
+                        scoreboardDisplay[r + 1][c].GetComponent<Text>().text = marbleStats[r][c - 1].ToString("0.00");
+                    }
+                }
+            }
+            else
+            {
+                for (int c = 1; c <= NUM_STATS; c++)
+                {
+                    scoreboardDisplay[r + 1][c].GetComponent<Text>().text = "0.00";
                 }
             }
         }
@@ -112,6 +123,7 @@ public class Scoreboard
         // Display the marbles that are disqualified
         for (int r = 0; r < disqualifiedMarbles.Count; r++)
         {
+            // Display the marble name
             scoreboardDisplay[r + marbles.Count + 1][0].GetComponent<Text>().text = disqualifiedMarbles[r].name;
 
             for (int c = 1; c <= NUM_STATS; c++)
@@ -145,26 +157,48 @@ public class Scoreboard
 
     private void SortByDistance()
     {
-        for (int i = 0; i < marbles.Count; i++)
+        // Only start sorting the marbles if the race has started
+        if (raceStarted)
         {
-            for (int j = 0; j < marbles.Count - 1; j++)
+            for (int i = 0; i < marbles.Count; i++)
             {
-                if (marbleStats[j][0] < marbleStats[j + 1][0] && marbles[j].transform.GetChild(0).tag == "marbleNotFinished")
+                for (int j = 0; j < marbles.Count - 1; j++)
                 {
-                    // Sorts the marble stats
-                    for(int k = 0; k < NUM_STATS; k++)
+                    if (marbleStats[j][0] < marbleStats[j + 1][0] && marbles[j].transform.GetChild(0).tag == "marbleNotFinished")
                     {
-                        float temp = marbleStats[j + 1][k];
-                        marbleStats[j + 1][k] = marbleStats[j][k];
-                        marbleStats[j][k] = temp;
-                    }
+                        // Sorts the marble stats
+                        for (int k = 0; k < NUM_STATS; k++)
+                        {
+                            float temp = marbleStats[j + 1][k];
+                            marbleStats[j + 1][k] = marbleStats[j][k];
+                            marbleStats[j][k] = temp;
+                        }
 
-                    // Sorts the marbles
-                    GameObject marbleTemp = marbles[j + 1];
-                    marbles[j + 1] = marbles[j];
-                    marbles[j] = marbleTemp;
+                        // Sorts the marbles
+                        GameObject marbleTemp = marbles[j + 1];
+                        marbles[j + 1] = marbles[j];
+                        marbles[j] = marbleTemp;
+                    }
                 }
             }
         }
+    }
+
+    // Initialize the start time and start distance
+    public void StartRace()
+    {
+        raceStarted = true;
+        startTime = Time.time;
+
+        // Set startDistance to highest starting y position of the marbles
+        float highestYPos = marbles[0].transform.position.y;
+        foreach (GameObject marble in marbles)
+        {
+            if (highestYPos < marble.transform.position.y)
+            {
+                highestYPos = marble.transform.position.y;
+            }
+        }
+        startDistance = highestYPos;
     }
 }
