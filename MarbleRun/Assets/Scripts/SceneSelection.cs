@@ -60,6 +60,12 @@ public class SceneSelection : MonoBehaviour
     {
         SceneManager.LoadScene("ColorSelection");
     }
+	
+	public void BackToMainMenu()
+	{
+		SceneManager.LoadScene("StartMenu");
+	}
+
     public void confirmButton()
     {
         switch (index)
