@@ -53,6 +53,9 @@ public class GameState : MonoBehaviour
             prefab.GetComponent<Renderer>().material = materials[x];
 		    marbles.Add(Instantiate(prefab, new Vector3(Random.Range(10f, 16f), 2.5f, -14f + x), Quaternion.identity));
             marbles[x].name = marbleName;
+            Light marbleGlow = marbles[x].AddComponent<Light>();
+            marbleGlow.color = materials[x].color;
+            marbleGlow.intensity *= 3;
             GameObject marbleState = new GameObject("Marble State");
             marbleState.transform.SetParent(marbles[x].transform);
             marbleState.tag = "marbleNotFinished";
