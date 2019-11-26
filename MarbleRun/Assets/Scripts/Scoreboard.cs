@@ -15,7 +15,7 @@ public class Scoreboard
     private static int NUM_STATS = 2;
     private Vector2 panel_size;
     private static Color PANEL_COLOR = Color.white;
-    private static bool raceStarted = false;
+    private bool raceStarted;
 
     public Scoreboard()
     {
@@ -23,6 +23,7 @@ public class Scoreboard
         marbles = new List<GameObject>();
         marbleStats = new List<float[]>();
         disqualifiedMarbles = new List<GameObject>();
+        raceStarted = false;
     }
 
     public void AddMarble(GameObject marble)
@@ -41,7 +42,7 @@ public class Scoreboard
         panel_size = new Vector2(290, 15 * (marbles.Count + 1) + 3);
 
         // Create the canvas we draw the scoreboard on
-        GameObject canvasObject = new GameObject("Canvas");
+        GameObject canvasObject = new GameObject("Scoreboard Canvas");
         Canvas canvas = canvasObject.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceCamera;
 
