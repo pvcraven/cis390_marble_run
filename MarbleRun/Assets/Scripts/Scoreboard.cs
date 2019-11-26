@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class Scoreboard
 {
@@ -57,7 +56,11 @@ public class Scoreboard
         panelRect.sizeDelta = panel_size;
         panel.AddComponent<CanvasRenderer>();
         Image panelImage = panel.AddComponent<Image>();
-        panelImage.color = PANEL_COLOR;
+        panelImage.sprite = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/Background.psd");
+        panelImage.type = Image.Type.Sliced;
+        Color panelColor = Color.white;
+        panelColor.a = 0.5f;
+        panelImage.color = panelColor;
 
         // Create the scoreboard rows
         for (int r = 0; r < marbles.Count + 1; r++)
