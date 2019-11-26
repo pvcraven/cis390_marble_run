@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ColorSelection.unity
     guid: e2af6041c98a17749abc26b7f7664271
+  - enabled: 1
+    path: Assets/Scenes/Scene03.unity
+    guid: ac4991df3e426874a953618005297366
   m_configObjects: {}

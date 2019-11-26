@@ -9,6 +9,8 @@ public class EndGame : MonoBehaviour
     // Start is called before the first frame update
     public void StartButtonPress()
     {
+        GameObject scoreboardCanvas = GameObject.Find("Scoreboard Canvas");
+        Destroy(scoreboardCanvas);
         SceneManager.LoadScene("Scene Selection");
     }
 
