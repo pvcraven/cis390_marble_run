@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -41,6 +41,12 @@ public class GameState : MonoBehaviour
                 materials[1] = Resources.Load<Material>("Blue");
                 materials[2] = Resources.Load<Material>("Orange");
                 materials[3] = Resources.Load<Material>("Red");
+                break;
+            case 3:
+                materials[0] = Resources.Load<Material>("Earth");
+                materials[1] = Resources.Load<Material>("Moon");
+                materials[2] = Resources.Load<Material>("Mars");
+                materials[3] = Resources.Load<Material>("Pluto");
                 break;
             default:
                 materials[0] = Resources.Load<Material>("Blue");
