@@ -43,6 +43,8 @@ public class Scoreboard
         // Create the canvas we draw the scoreboard on
         GameObject canvasObject = new GameObject("Scoreboard Canvas");
         Canvas canvas = canvasObject.AddComponent<Canvas>();
+        CanvasScaler scaler = canvasObject.AddComponent<CanvasScaler>();
+        scaler.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
         canvas.renderMode = RenderMode.ScreenSpaceCamera;
 
         // Create the panel for the scoreboard
