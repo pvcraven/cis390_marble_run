@@ -15,11 +15,12 @@ public class GameState : MonoBehaviour
     const int marbleCount = 4;
     private Scoreboard scoreboard;
     private int colorSelection;
+    private GameObject darkMap;
 
 
     void Start()
     {
-
+        darkMap = GameObject.Find("DarkMap");
         colorSelection = SceneSelection.MateralSelection;
         Material[] materials = new Material[4];
         switch (colorSelection)
@@ -66,9 +67,12 @@ public class GameState : MonoBehaviour
             prefab.GetComponent<Renderer>().material = materials[x];
 		    marbles.Add(Instantiate(prefab, new Vector3(Random.Range(10f, 16f), 2.5f, -14f + x), Quaternion.identity));
             marbles[x].name = marbleName;
-            Light marbleGlow = marbles[x].AddComponent<Light>();
-            marbleGlow.color = materials[x].color;
-            marbleGlow.intensity *= 3;
+            if (darkMap != null)
+            {
+                Light marbleGlow = marbles[x].AddComponent<Light>();
+                marbleGlow.color = materials[x].color;
+                marbleGlow.intensity *= 3;
+            }
 
             // Create the marble label
             GameObject labelPrefab = Resources.Load<GameObject>("Label");
@@ -124,7 +128,7 @@ public class GameState : MonoBehaviour
 		{
 			Rigidbody marblerb = marble.GetComponent<Rigidbody>();
 			Vector3 v3Velocity = marblerb.velocity;
-			if ((v3Velocity.x == 0 && v3Velocity.y == 0 && v3Velocity.z == 0) || Time.time > 8)
+			if ((v3Velocity.x == 0 && v3Velocity.y == 0 && v3Velocity.z == 0) || Time.timeSinceLevelLoad > 8)
 			{
 				return true;
 			}
