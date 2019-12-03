@@ -51,7 +51,7 @@ public class SceneSelection : MonoBehaviour
 
         sceneList[index].SetActive(true);
     }
-    public void BackToCourseSelection()
+    public void ChooseColors()
     {
         SceneManager.LoadScene("Scene Selection");
         MateralSelection = index;
@@ -64,6 +64,11 @@ public class SceneSelection : MonoBehaviour
 	public void BackToMainMenu()
 	{
 		SceneManager.LoadScene("StartMenu");
+	}
+
+	public void BackToSceneSelector()
+	{
+		SceneManager.LoadScene("Scene Selection");
 	}
 
     public void confirmButton()
