@@ -150,12 +150,14 @@ public class Scoreboard
                 marbles[i].transform.GetChild(0).tag = "marbleFinished";
                 marbles.RemoveAt(i);
             }
-
-            // Get the new distances and times of the marbles
-            float newDistance = startDistance - marbles[i].transform.position.y;
-            float newTime = Time.time - startTime;
-            float[] newStat = { newDistance, newTime };
-            marbleStats[i] = newStat;
+            else
+            {
+                // Get the new distances and times of the marbles
+                float newDistance = startDistance - marbles[i].transform.position.y;
+                float newTime = Time.time - startTime;
+                float[] newStat = { newDistance, newTime };
+                marbleStats[i] = newStat;
+            }
         }
 
         SortByDistance();

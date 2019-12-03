@@ -13,11 +13,11 @@ public class Crash : MonoBehaviour
     {
         GameObject marble = hit.gameObject;
         marble.transform.GetChild(0).tag = "marbleFinished";
-        marblesNotFinished = GameObject.FindGameObjectsWithTag("marbleNotFinished");
     }
 
     private void Update()
     {
+        marblesNotFinished = GameObject.FindGameObjectsWithTag("marbleNotFinished");
         if (!end && marblesNotFinished.Length == 0)
         {
             end = true;

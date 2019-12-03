@@ -25,7 +25,7 @@ public class GameState : MonoBehaviour
         switch (colorSelection)
         {
             case 0:
-                materials[0] = Resources.Load<Material>("LightBlue");
+                materials[0] = Resources.Load<Material>("Light Blue");
                 materials[1] = Resources.Load<Material>("Purple");
                 materials[2] = Resources.Load<Material>("Red");
                 materials[3] = Resources.Load<Material>("Yellow");
@@ -37,7 +37,7 @@ public class GameState : MonoBehaviour
                 materials[3] = Resources.Load<Material>("Orange");
                 break;
             case 2:
-                materials[0] = Resources.Load<Material>("DarkBlue");
+                materials[0] = Resources.Load<Material>("Dark Blue");
                 materials[1] = Resources.Load<Material>("Blue");
                 materials[2] = Resources.Load<Material>("Orange");
                 materials[3] = Resources.Load<Material>("Red");
