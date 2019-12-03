@@ -421,11 +421,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1891008721}
+      objectReference: {fileID: 73706693}
     - target: {fileID: 2062469784265740158, guid: 404c21d91d0401a44af7f9dd15c5faf0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: RightButton
       objectReference: {fileID: 0}
     - target: {fileID: 2062469783205814842, guid: 404c21d91d0401a44af7f9dd15c5faf0,
         type: 3}
@@ -827,16 +827,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 73706693}
     - target: {fileID: 8879540214316524686, guid: b1d7dd01d6dfa6b419dc6e94393caeb1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BackToCourseSelection
+      value: confirmButton
       objectReference: {fileID: 0}
     - target: {fileID: 8879540214425065813, guid: b1d7dd01d6dfa6b419dc6e94393caeb1,
         type: 3}
       propertyPath: m_Text
-      value: Select Color Scheme
+      value: Confirm
       objectReference: {fileID: 0}
     - target: {fileID: 8879540214425065813, guid: b1d7dd01d6dfa6b419dc6e94393caeb1,
         type: 3}
@@ -1140,12 +1140,12 @@ PrefabInstance:
     - target: {fileID: 2062469784265740157, guid: 404c21d91d0401a44af7f9dd15c5faf0,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 62.9
+      value: 62.899994
       objectReference: {fileID: 0}
     - target: {fileID: 2062469784265740157, guid: 404c21d91d0401a44af7f9dd15c5faf0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 25.4
+      value: 25.400024
       objectReference: {fileID: 0}
     - target: {fileID: 2062469784265740157, guid: 404c21d91d0401a44af7f9dd15c5faf0,
         type: 3}
@@ -1191,7 +1191,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 73706693}
     - target: {fileID: 2062469784265740158, guid: 404c21d91d0401a44af7f9dd15c5faf0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
