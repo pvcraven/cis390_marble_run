@@ -9,7 +9,7 @@ Students:
 
 * [Kole](https://github.com/KoleHicok)
 * Peyton
-* Emmy
+* [Emmy](https://github.com/emmyF18) 
 * Jesse
 * George
 * Karson
