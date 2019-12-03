@@ -1,7 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class GameState : MonoBehaviour
@@ -24,16 +25,28 @@ public class GameState : MonoBehaviour
         switch (colorSelection)
         {
             case 0:
-                materials[0] = Resources.Load<Material>("Blue");
+                materials[0] = Resources.Load<Material>("LightBlue");
                 materials[1] = Resources.Load<Material>("Purple");
                 materials[2] = Resources.Load<Material>("Red");
                 materials[3] = Resources.Load<Material>("Yellow");
                 break;
             case 1:
                 materials[0] = Resources.Load<Material>("Pink");
-                materials[1] = Resources.Load<Material>("Blue");
+                materials[1] = Resources.Load<Material>("Purple");
                 materials[2] = Resources.Load<Material>("Green");
                 materials[3] = Resources.Load<Material>("Orange");
+                break;
+            case 2:
+                materials[0] = Resources.Load<Material>("DarkBlue");
+                materials[1] = Resources.Load<Material>("Blue");
+                materials[2] = Resources.Load<Material>("Orange");
+                materials[3] = Resources.Load<Material>("Red");
+                break;
+            case 3:
+                materials[0] = Resources.Load<Material>("Earth");
+                materials[1] = Resources.Load<Material>("Moon");
+                materials[2] = Resources.Load<Material>("Mars");
+                materials[3] = Resources.Load<Material>("Pluto");
                 break;
             default:
                 materials[0] = Resources.Load<Material>("Blue");
@@ -47,27 +60,30 @@ public class GameState : MonoBehaviour
         marbleLabels = new List<GameObject>();
         for (int x = 0; x < marbleCount; x++)
         {
-            string marbleName = materials[x].name + " Marble";
+            string marbleName = materials[x].name;
 
             // Create the marble
             prefab.GetComponent<Renderer>().material = materials[x];
 		    marbles.Add(Instantiate(prefab, new Vector3(Random.Range(10f, 16f), 2.5f, -14f + x), Quaternion.identity));
             marbles[x].name = marbleName;
-            GameObject marbleState = new GameObject("Marble State");
-            marbleState.transform.SetParent(marbles[x].transform);
-            marbleState.tag = "marbleNotFinished";
+            Light marbleGlow = marbles[x].AddComponent<Light>();
+            marbleGlow.color = materials[x].color;
+            marbleGlow.intensity *= 3;
 
             // Create the marble label
             GameObject label = new GameObject(marbleName + " Label");
 
             // Set the label text
-            TextMesh labelText = label.AddComponent<TextMesh>();
+            TextMeshPro labelText = label.AddComponent<TextMeshPro>();
             labelText.text = marbleName;
-            labelText.characterSize =0.75f;
+            labelText.fontSize = 14;
             labelText.color = Color.white;
-            labelText.anchor = TextAnchor.UpperCenter;
-            labelText.alignment = TextAlignment.Center;
-            Outline labelOutline = label.AddComponent<Outline>();
+            labelText.alignment = TextAlignmentOptions.Center;
+            labelText.outlineColor = Color.black;
+            labelText.outlineWidth = 0.2f;
+            labelText.fontStyle = FontStyles.Bold;
+            labelText.transform.SetParent(marbles[x].transform);
+            labelText.tag = "marbleNotFinished";
 
             label.transform.position = marbles[x].transform.position;
             marbleLabels.Add(label);

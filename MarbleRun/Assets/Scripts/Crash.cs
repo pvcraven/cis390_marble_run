@@ -14,7 +14,6 @@ public class Crash : MonoBehaviour
         GameObject marble = hit.gameObject;
         marble.transform.GetChild(0).tag = "marbleFinished";
         marblesNotFinished = GameObject.FindGameObjectsWithTag("marbleNotFinished");
-        //Debug.Log("HIT! " + marblesNotFinished.Length);
     }
 
     private void Update()
@@ -30,6 +29,8 @@ public class Crash : MonoBehaviour
     private IEnumerator GoToEnd()
     {
         yield return new WaitForSeconds(5);
+        GameObject scoreboardCanvas = GameObject.Find("Scoreboard Canvas");
+        DontDestroyOnLoad(scoreboardCanvas);
         SceneManager.LoadScene("EndMenu");
     }
 }
