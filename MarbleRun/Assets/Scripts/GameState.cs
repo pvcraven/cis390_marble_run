@@ -85,10 +85,13 @@ public class GameState : MonoBehaviour
             }
 
             // Create the marble label
-            GameObject label = new GameObject(marbleName + " Label");
+            GameObject labelPrefab = Resources.Load<GameObject>("Label");
+            GameObject label = Instantiate(labelPrefab, marbles[x].transform.position, Quaternion.identity, marbles[x].transform) as GameObject;
+            label.name = marbleName + " Label";
+            label.tag = "marbleNotFinished";
 
             // Set the label text
-            TextMeshPro labelText = label.AddComponent<TextMeshPro>();
+            TextMeshPro labelText = label.GetComponent<TextMeshPro>();
             labelText.text = marbleName;
             labelText.fontSize = 14;
             labelText.color = Color.white;
@@ -96,10 +99,9 @@ public class GameState : MonoBehaviour
             labelText.outlineColor = Color.black;
             labelText.outlineWidth = 0.2f;
             labelText.fontStyle = FontStyles.Bold;
-            labelText.transform.SetParent(marbles[x].transform);
-            labelText.tag = "marbleNotFinished";
+            
 
-            label.transform.position = marbles[x].transform.position;
+            //label.transform.position = marbles[x].transform.position;
             marbleLabels.Add(label);
         }
 
