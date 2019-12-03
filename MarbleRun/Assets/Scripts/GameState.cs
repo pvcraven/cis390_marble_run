@@ -67,6 +67,16 @@ public class GameState : MonoBehaviour
             prefab.GetComponent<Renderer>().material = materials[x];
 		    marbles.Add(Instantiate(prefab, new Vector3(Random.Range(10f, 16f), 2.5f, -14f + x), Quaternion.identity));
             marbles[x].name = marbleName;
+            // Add trails to marbles
+            TrailRenderer trail = marbles[x].AddComponent<TrailRenderer>();
+            trail.time = 0.25f;
+            trail.material = marbles[x].GetComponent<MeshRenderer>().material;
+            AnimationCurve curve = new AnimationCurve();
+            curve.AddKey(0.0f, 0.75f);
+            curve.AddKey(0.6f, 0.25f);
+            curve.AddKey(1.0f, 0.0f);
+            trail.widthCurve = curve;
+            // If the map is dark, make the marbles glow
             if (darkMap != null)
             {
                 Light marbleGlow = marbles[x].AddComponent<Light>();
