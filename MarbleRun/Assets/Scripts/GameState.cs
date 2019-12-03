@@ -62,10 +62,11 @@ public class GameState : MonoBehaviour
         for (int x = 0; x < marbleCount; x++)
         {
             string marbleName = materials[x].name;
-
+            
             // Create the marble
             prefab.GetComponent<Renderer>().material = materials[x];
-		    marbles.Add(Instantiate(prefab, new Vector3(Random.Range(10f, 16f), 2.5f, -14f + x), Quaternion.identity));
+            Vector3 spawnVector = new Vector3(Random.Range(-2f, 2f), x, Random.Range(-2f, 2f));
+            marbles.Add(Instantiate(prefab, this.transform.position + spawnVector, Quaternion.identity));
             marbles[x].name = marbleName;
             // Add trails to marbles
             TrailRenderer trail = marbles[x].AddComponent<TrailRenderer>();
