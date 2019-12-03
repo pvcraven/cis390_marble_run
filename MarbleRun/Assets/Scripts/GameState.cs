@@ -106,7 +106,7 @@ public class GameState : MonoBehaviour
 		{
 			Rigidbody marblerb = marble.GetComponent<Rigidbody>();
 			Vector3 v3Velocity = marblerb.velocity;
-			if ((v3Velocity.x == 0 && v3Velocity.y == 0 && v3Velocity.z == 0) || Time.time > 8)
+			if ((v3Velocity.x == 0 && v3Velocity.y == 0 && v3Velocity.z == 0) || Time.timeSinceLevelLoad > 8)
 			{
 				return true;
 			}
