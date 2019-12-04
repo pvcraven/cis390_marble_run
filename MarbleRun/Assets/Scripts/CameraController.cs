@@ -12,7 +12,9 @@ public class CameraController : MonoBehaviour
         if (collider.tag.Equals("LeadBall"))
         {
             startingCamera.enabled = false;
+            startingCamera.gameObject.GetComponent<AudioListener>().enabled = false;
             newCamera.enabled = true;
+            newCamera.gameObject.GetComponent<AudioListener>().enabled = true;
         }
     }
 }
