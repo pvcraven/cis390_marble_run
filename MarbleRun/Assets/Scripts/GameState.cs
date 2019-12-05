@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 
 public class GameState : MonoBehaviour
@@ -13,7 +14,7 @@ public class GameState : MonoBehaviour
     private List<GameObject> marbles;
     private List<GameObject> marbleLabels;
     private List<GameObject> meteors;
-    const int marbleCount = 4;
+    private int marbleCount = 4;
     private Scoreboard scoreboard;
     private int colorSelection;
     private GameObject darkMap;
@@ -25,7 +26,7 @@ public class GameState : MonoBehaviour
         darkMap = GameObject.Find("DarkMap");
         spawnMeteors = GameObject.Find("SpawnMeteors");
         colorSelection = SceneSelection.MateralSelection;
-        Material[] materials = new Material[4];
+        Material[] materials = new Material[marbleCount];
         switch (colorSelection)
         {
             case 0:
@@ -51,6 +52,9 @@ public class GameState : MonoBehaviour
                 materials[1] = Resources.Load<Material>("Moon");
                 materials[2] = Resources.Load<Material>("Mars");
                 materials[3] = Resources.Load<Material>("Pluto");
+                break;
+            case 4:
+                materials = RandomMarbles();
                 break;
             default:
                 materials[0] = Resources.Load<Material>("Blue");
@@ -146,6 +150,50 @@ public class GameState : MonoBehaviour
             scoreboard.AddMarble(marble);
         }
 		scoreboard.Create();
+    }
+
+    private Material[] RandomMarbles()
+    {
+        Material[] all = GetAllMaterials();
+        marbleCount = Random.Range(4, 14);
+        Material[] materials = new Material[marbleCount];
+        Debug.Log("Marble Count: " + marbleCount);
+        for(int i =0; i < marbleCount; i++)
+        {
+            int rand = Random.Range(0, 13);
+            Debug.Log("rand: " + rand);
+            //if(!System.Array.Exists(materials, element => element == all[rand]))
+            //{
+                Debug.Log("Added: "+all[rand].color);
+                materials[i] = all[rand];
+            //}
+
+        }
+
+        return materials;
+    }
+    private Material[] GetAllMaterials()
+    {
+        Material[] AllMaterials = new Material[13];
+
+        AllMaterials[0] = Resources.Load<Material>("Blue");
+        AllMaterials[1] = Resources.Load<Material>("Dark Blue");
+        AllMaterials[2] = Resources.Load<Material>("Earth");
+        AllMaterials[3] = Resources.Load<Material>("Green");
+        AllMaterials[4] = Resources.Load<Material>("Light Blue");
+        AllMaterials[5] = Resources.Load<Material>("Mars");
+        AllMaterials[6] = Resources.Load<Material>("Moon");
+        AllMaterials[7] = Resources.Load<Material>("Orange");
+        AllMaterials[8] = Resources.Load<Material>("Pink");
+        AllMaterials[9] = Resources.Load<Material>("Pluto");
+        AllMaterials[10] = Resources.Load<Material>("Purple");
+        AllMaterials[11] = Resources.Load<Material>("Red");
+        AllMaterials[12] = Resources.Load<Material>("Yellow");
+        foreach (var i in AllMaterials)
+        {
+            Debug.Log(i);
+        }
+        return AllMaterials;
     }
 
     // Update is called once per frame
