@@ -10,6 +10,7 @@ TagManager:
   - startGate
   - marbleFinished
   - marbleNotFinished
+  - Shoot
   layers:
   - Default
   - TransparentFX

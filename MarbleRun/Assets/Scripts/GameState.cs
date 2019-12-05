@@ -12,15 +12,18 @@ public class GameState : MonoBehaviour
 	public Button startButton;
     private List<GameObject> marbles;
     private List<GameObject> marbleLabels;
+    private List<GameObject> meteors;
     const int marbleCount = 4;
     private Scoreboard scoreboard;
     private int colorSelection;
     private GameObject darkMap;
+    private GameObject spawnMeteors;
 
 
     void Start()
     {
         darkMap = GameObject.Find("DarkMap");
+        spawnMeteors = GameObject.Find("SpawnMeteors");
         colorSelection = SceneSelection.MateralSelection;
         Material[] materials = new Material[4];
         switch (colorSelection)
@@ -124,6 +127,18 @@ public class GameState : MonoBehaviour
             marbleLabels.Add(label);
         }
 
+        // This spawns meteors, but it DESTROYS the framerate
+        if (spawnMeteors != null)
+        {
+            meteors = new List<GameObject>();
+
+            for (int x = 0; x < 20; x++)
+            {
+                GameObject meteor = (GameObject) Resources.Load("meteor");
+                meteors.Add(Instantiate(meteor));
+            }
+        }
+
         // Initialize scoreboard
         scoreboard = new Scoreboard();
         foreach (GameObject marble in marbles)
@@ -187,10 +202,10 @@ public class GameState : MonoBehaviour
     void LabelsFollow()
     {
         // Disables main camera, which is not in use
-        if (GameObject.Find("Main Camera"))
+        /*if (GameObject.Find("Main Camera"))
         {
             GameObject.Find("Main Camera").GetComponent<Camera>().enabled = false;
-        }
+        }*/
 
         for (int marbleNum = 0; marbleNum < marbleLabels.Count; marbleNum++)
         {
