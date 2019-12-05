@@ -8,7 +8,7 @@ Project was created using Unity 2019 2.2f1, and Blender 2.79.
 Students:
 
 * [Kole](https://github.com/KoleHicok)
-* Peyton
+* Payton
 * [Emmy](https://github.com/emmyF18) 
 * Jesse
 * George
