@@ -68,6 +68,7 @@ public class GameState : MonoBehaviour
             Vector3 spawnVector = new Vector3(Random.Range(-2f, 2f), x, Random.Range(-2f, 2f));
             marbles.Add(Instantiate(prefab, this.transform.position + spawnVector, Quaternion.identity));
             marbles[x].name = marbleName;
+
             // Add trails to marbles
             TrailRenderer trail = marbles[x].AddComponent<TrailRenderer>();
             trail.time = 0.25f;
@@ -77,13 +78,30 @@ public class GameState : MonoBehaviour
             curve.AddKey(0.6f, 0.25f);
             curve.AddKey(1.0f, 0.0f);
             trail.widthCurve = curve;
+
             // If the map is dark, make the marbles glow
+            // In order to use this, an empty GameObject named "DarkMap" must be added to the scene.
             if (darkMap != null)
             {
                 Light marbleGlow = marbles[x].AddComponent<Light>();
                 marbleGlow.color = materials[x].color;
-                marbleGlow.intensity *= 3;
+                marbleGlow.intensity *= 5;
             }
+
+            // Rolling sound for marbles (only plays if they are touching a surface)
+            // Add external script to each marble for collisions
+            marbles[x].AddComponent<RollingSound>();
+            marbles[x].AddComponent<AudioSource>();
+            AudioSource audio = marbles[x].GetComponent<AudioSource>();
+            AudioClip newClip = Resources.Load<AudioClip>("Roll");
+            Debug.Log(newClip);
+            audio.clip = newClip;
+            audio.playOnAwake = true;
+            audio.loop = true;
+            audio.spatialBlend = 1;
+            audio.rolloffMode = AudioRolloffMode.Linear;
+            audio.maxDistance = 50;
+            audio.volume = 0.75f;
 
             // Create the marble label
             GameObject labelPrefab = Resources.Load<GameObject>("Label");
@@ -131,9 +149,20 @@ public class GameState : MonoBehaviour
 				btn.onClick.AddListener(TaskOnClick);
 			}
 		}
+
+        // Update audio volume for each marble based on its speed (caps out at 20)
+        foreach (GameObject marble in marbles)
+        { 
+            AudioSource audio = marble.GetComponent<AudioSource>();
+            Rigidbody rb = marble.GetComponent<Rigidbody>();
+            float velocityX = Mathf.Abs(rb.velocity.x);
+            float velocityZ = Mathf.Abs(rb.velocity.z);
+            float maxVelocity = Mathf.Max(velocityX, velocityZ);
+            audio.volume = maxVelocity/10;
+        }
     }
 
-	private bool CheckMarbleStop()
+    private bool CheckMarbleStop()
 	{
 		foreach (GameObject marble in marbles)
 		{
