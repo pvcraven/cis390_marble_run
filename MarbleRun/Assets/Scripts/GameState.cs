@@ -85,7 +85,7 @@ public class GameState : MonoBehaviour
             {
                 Light marbleGlow = marbles[x].AddComponent<Light>();
                 marbleGlow.color = materials[x].color;
-                marbleGlow.intensity *= 3;
+                marbleGlow.intensity *= 5;
             }
 
             // Rolling sound for marbles (only plays if they are touching a surface)
@@ -158,7 +158,7 @@ public class GameState : MonoBehaviour
             float velocityX = Mathf.Abs(rb.velocity.x);
             float velocityZ = Mathf.Abs(rb.velocity.z);
             float maxVelocity = Mathf.Max(velocityX, velocityZ);
-            audio.volume = maxVelocity/20;
+            audio.volume = maxVelocity/10;
         }
     }
 
