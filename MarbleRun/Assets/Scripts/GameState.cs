@@ -12,15 +12,18 @@ public class GameState : MonoBehaviour
 	public Button startButton;
     private List<GameObject> marbles;
     private List<GameObject> marbleLabels;
+    private List<GameObject> meteors;
     const int marbleCount = 4;
     private Scoreboard scoreboard;
     private int colorSelection;
     private GameObject darkMap;
+    private GameObject spawnMeteors;
 
 
     void Start()
     {
         darkMap = GameObject.Find("DarkMap");
+        spawnMeteors = GameObject.Find("SpawnMeteors");
         colorSelection = SceneSelection.MateralSelection;
         Material[] materials = new Material[4];
         switch (colorSelection)
@@ -123,6 +126,18 @@ public class GameState : MonoBehaviour
             //label.transform.position = marbles[x].transform.position;
             marbleLabels.Add(label);
         }
+
+        // This spawns meteors, but it DESTROYS the framerate
+        /*if (spawnMeteors != null)
+        {
+            meteors = new List<GameObject>();
+
+            for (int x = 0; x < 20; x++)
+            {
+                GameObject meteor = (GameObject) Resources.Load("meteor");
+                meteors.Add(Instantiate(meteor));
+            }
+        }*/
 
         // Initialize scoreboard
         scoreboard = new Scoreboard();
