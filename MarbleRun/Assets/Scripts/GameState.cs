@@ -128,7 +128,7 @@ public class GameState : MonoBehaviour
         }
 
         // This spawns meteors, but it DESTROYS the framerate
-        /*if (spawnMeteors != null)
+        if (spawnMeteors != null)
         {
             meteors = new List<GameObject>();
 
@@ -137,7 +137,7 @@ public class GameState : MonoBehaviour
                 GameObject meteor = (GameObject) Resources.Load("meteor");
                 meteors.Add(Instantiate(meteor));
             }
-        }*/
+        }
 
         // Initialize scoreboard
         scoreboard = new Scoreboard();
@@ -202,10 +202,10 @@ public class GameState : MonoBehaviour
     void LabelsFollow()
     {
         // Disables main camera, which is not in use
-        if (GameObject.Find("Main Camera"))
+        /*if (GameObject.Find("Main Camera"))
         {
             GameObject.Find("Main Camera").GetComponent<Camera>().enabled = false;
-        }
+        }*/
 
         for (int marbleNum = 0; marbleNum < marbleLabels.Count; marbleNum++)
         {
