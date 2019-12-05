@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
     private Rigidbody rb;
-    private float speed = 5000.0f;
+    private float speed = 7500.0f;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
