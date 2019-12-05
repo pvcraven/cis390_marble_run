@@ -58,8 +58,8 @@ public class Scoreboard
         panelRect.sizeDelta = panel_size;
         panel.AddComponent<CanvasRenderer>();
         Image panelImage = panel.AddComponent<Image>();
-        panelImage.sprite = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/Background.psd");
-        panelImage.type = Image.Type.Sliced;
+        //panelImage.sprite = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/Background.psd");
+        //panelImage.type = Image.Type.Sliced;
         Color panelColor = Color.white;
         panelColor.a = 0.5f;
         panelImage.color = panelColor;
